@@ -6,7 +6,7 @@
 package sqlmon;
 
 import sqlmon.conexion.Conexion;
-
+import paneles.PanelMonitor;
 /**
  *
  * @author adan-
@@ -22,17 +22,21 @@ public class SQLMON {
         //si quiere ver un consumo hagalo con true...
         while(true)
         {
+        //System.out.println("----------------"+i+"-------------------");
         Conexion c = new Conexion();
         c.conectar();
+        //aqui hay que modificar el query ya que ocupamos informacion adicional revise el queri de monitor_memory es el que deberia ir aqui.
         c.executeQuery("select POOL, Round(bytes/1024/1024,0) Free_Memory_In_MB From V$sgastat Where Name Like '%free memory%'");
+        //estos valores son los que hay que pasar de 0 a 100% y de ahi pasarlos al grafico.
         System.out.println("----------------------------------------");
         i++;
         }
+    
         
         
       // c.executeQuery("SELECT * FROM   v$sga_dynamic_free_memory");
 //        c.executeQuery2("SELECT BYTES AS d FROM V$SGAINFO WHERE NAME = 'Fixed SGA Size'"); 
-
+    
 
         
     }
