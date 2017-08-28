@@ -19,7 +19,8 @@ public class SQLMON {
     public static void main(String[] args) {
         // TODO code application logic here
         int i=0;
-        while(i<10)
+        //si quiere ver un consumo hagalo con true...
+        while(true)
         {
         Conexion c = new Conexion();
         c.conectar();
@@ -31,6 +32,9 @@ public class SQLMON {
         
       // c.executeQuery("SELECT * FROM   v$sga_dynamic_free_memory");
 //        c.executeQuery2("SELECT BYTES AS d FROM V$SGAINFO WHERE NAME = 'Fixed SGA Size'"); 
+
+
+        
     }
     
 }
