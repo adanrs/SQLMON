@@ -7,6 +7,7 @@ package sqlmon.conexion;
 
 
 
+import Ventanas.SwingWorkerRealTime;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Connection;
@@ -86,7 +87,9 @@ public class Conexion {
         }
     }
     /*Ejecutar Querys*/
-        public void executeQuery(String statement) { 
+    //aqui va el cod del grafico 
+        public double executeQuery(String statement) { 
+            double valor=0;
         try {
             Statement stm = conexion.createStatement();
             ResultSet rs = stm.executeQuery(statement);
@@ -99,14 +102,15 @@ public class Conexion {
                 
                String a = rs.getString("POOL");//Aqui deberia jalar el nombre de la columna
                 String b = rs.getString("FREE_MEMORY_IN_MB");
-              
+               
+              valor+= Double.parseDouble(b);
                 System.out.println(a+" "+" "+b);          
                
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-     
+        return valor;  
     }
         
         /*Devuelve columna*/

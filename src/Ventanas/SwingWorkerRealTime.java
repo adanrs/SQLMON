@@ -27,25 +27,30 @@ public class SwingWorkerRealTime {
   MySwingWorker mySwingWorker;
   SwingWrapper<XYChart> sw;
   XYChart chart;
+  double valor;
  
   public static void main(String[] args) throws Exception {
  
-    SwingWorkerRealTime swingWorkerRealTime = new SwingWorkerRealTime();
-    swingWorkerRealTime.go();
+    //SwingWorkerRealTime swingWorkerRealTime = new SwingWorkerRealTime();
+    //swingWorkerRealTime.init();
+    
   }
- 
-  private void go() {
- 
-    // Create Chart
-    chart = QuickChart.getChart("SwingWorker XChart Real-time Demo", "Time", "Value", "randomWalk", new double[] { 0 }, new double[] { 0 });
+  
+  public void init()
+  {
+       // Create Chart
+    chart = QuickChart.getChart("Monitor Data Base", "Use", "Memory", "randomWalk", new double[] { 0 }, new double[] { 0 });
     chart.getStyler().setLegendVisible(false);
     chart.getStyler().setXAxisTicksVisible(false);
- 
-    // Show it
-    sw = new SwingWrapper<XYChart>(chart);
+     sw = new SwingWrapper<XYChart>(chart);
     sw.displayChart();
+  }
+  
+ //uno
+  public void go(double val) { 
  
-    mySwingWorker = new MySwingWorker();
+        valor=val;
+     mySwingWorker = new MySwingWorker();
     mySwingWorker.execute();
   }
  
@@ -58,12 +63,14 @@ public class SwingWorkerRealTime {
       fifo.add(0.0);
     }
  
+    //dos
     @Override
     protected Boolean doInBackground() throws Exception {
- 
-      while (!isCancelled()) {
- 
-        fifo.add(fifo.get(fifo.size() - 1) + Math.random() - .5);
+  
+      //while (!isCancelled()) {
+      
+        fifo.add(fifo.get(fifo.size()- 1) + valor);// valor de la memoria libre
+
         if (fifo.size() > 500) {
           fifo.removeFirst();
         }
@@ -80,8 +87,9 @@ public class SwingWorkerRealTime {
           // eat it. caught when interrupt is called
           System.out.println("MySwingWorker shut down.");
         }
- 
-      }
+       
+       //}
+           
  
       return true;
     }
