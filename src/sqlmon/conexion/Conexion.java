@@ -110,7 +110,9 @@ public class Conexion {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        return valor;  
+        
+            System.out.println("%"+(valor/176)*100);
+        return (valor/176)*100;  
     }
         
         /*Devuelve columna*/
