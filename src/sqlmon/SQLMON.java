@@ -18,15 +18,19 @@ public class SQLMON {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
+        int i=0;
+        while(i<10)
+        {
         Conexion c = new Conexion();
         c.conectar();
         c.executeQuery("select POOL, Round(bytes/1024/1024,0) Free_Memory_In_MB From V$sgastat Where Name Like '%free memory%'");
-
+        System.out.println("----------------------------------------");
+        i++;
+        }
         
         
-      //  c.executeQuery("SELECT * FROM   v$sga_dynamic_free_memory");
-        ///c.executeQuery2("SELECT BYTES AS d FROM V$SGAINFO WHERE NAME = 'Fixed SGA Size'"); 
+      // c.executeQuery("SELECT * FROM   v$sga_dynamic_free_memory");
+//        c.executeQuery2("SELECT BYTES AS d FROM V$SGAINFO WHERE NAME = 'Fixed SGA Size'"); 
     }
     
 }
