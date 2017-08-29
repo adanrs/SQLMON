@@ -29,29 +29,26 @@ public class SwingWorkerRealTime {
   XYChart chart;
   double valor;
  
-  public static void main(String[] args) throws Exception {
- 
-    //SwingWorkerRealTime swingWorkerRealTime = new SwingWorkerRealTime();
-    //swingWorkerRealTime.init();
-    
-  }
-  
+
   public void init()
   {
        // Create Chart
-    chart = QuickChart.getChart("Monitor Data Base", "Use", "Memory", "randomWalk", new double[] { 0 }, new double[] { 0 });
-    chart.getStyler().setLegendVisible(false);
+    chart = QuickChart.getChart("Monitor Data Base", "time", "Memory", "uso", new double[] { 0 }, new double[] { 0 });
     chart.getStyler().setXAxisTicksVisible(false);
-     sw = new SwingWrapper<XYChart>(chart);
+    sw = new SwingWrapper<XYChart>(chart);
     sw.displayChart();
   }
   
  //uno
+  // donde se actualiza la ventana 
   public void go(double val) { 
- 
-        valor=val;
+
+      valor=val;
      mySwingWorker = new MySwingWorker();
     mySwingWorker.execute();
+    
+    
+    
   }
  
   private class MySwingWorker extends SwingWorker<Boolean, double[]> {
@@ -64,10 +61,11 @@ public class SwingWorkerRealTime {
     }
  
     //dos
+    // pinta los valores en la grafica 
     @Override
     protected Boolean doInBackground() throws Exception {
   
-      //while (!isCancelled()) {
+      
       
         fifo.add(fifo.get(fifo.size()- 1) + valor);// valor de la memoria libre
 
@@ -82,13 +80,12 @@ public class SwingWorkerRealTime {
         publish(array);
  
         try {
-          Thread.sleep(5);
+          Thread.sleep(100);
         } catch (InterruptedException e) {
           // eat it. caught when interrupt is called
           System.out.println("MySwingWorker shut down.");
         }
        
-       //}
            
  
       return true;
@@ -97,11 +94,11 @@ public class SwingWorkerRealTime {
     @Override
     protected void process(List<double[]> chunks) {
  
-      System.out.println("number of chunks: " + chunks.size());
+     
  
       double[] mostRecentDataSet = chunks.get(chunks.size() - 1);
  
-      chart.updateXYSeries("randomWalk", null, mostRecentDataSet, null);
+      chart.updateXYSeries("uso", null, mostRecentDataSet, null);
       sw.repaintChart();
  
       long start = System.currentTimeMillis();

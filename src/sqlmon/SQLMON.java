@@ -6,7 +6,7 @@
 package sqlmon;
 
 import Ventanas.SwingWorkerRealTime;
-import Ventanas.Vent2;
+
 import javax.swing.JOptionPane;
 import sqlmon.conexion.Conexion;
 import paneles.PanelMonitor;
@@ -24,35 +24,28 @@ public class SQLMON {
        
         double aux=0;
         //si quiere ver un consumo hagalo con true...
-        SwingWorkerRealTime vent= new SwingWorkerRealTime();
-        Vent2 vent2= new Vent2();
-        vent.init();
+        SwingWorkerRealTime vent= new SwingWorkerRealTime(); // constructructor ventana 
         
-        while(true)
+        vent.init();// inicio ventana 
+        
+        while(true) // mantiene corriendo el programa 
         {
             
-        //System.out.println("----------------"+i+"-------------------");
-        Conexion c = new Conexion();
-        c.conectar();
+        Conexion c = new Conexion(); // crea la conexion con la base de datos 
+        c.conectar();// conecta a la base 
         //aqui hay que modificar el query ya que ocupamos informacion adicional revise el queri de monitor_memory es el que deberia ir aqui.
        aux= c.executeQuery("select POOL, Round(bytes/1024/1024,0) Free_Memory_In_MB From V$sgastat Where Name Like '%free memory%'");
         //estos valores son los que hay que pasar de 0 a 100% y de ahi pasarlos al grafico.
         System.out.println("----------------------------------------");
-        vent.go(aux);
-        vent2.go(aux);
+        vent.go(aux);// se le envia porcentaje a la ventana 
+        
         if(aux > 85){
         JOptionPane.showMessageDialog(null, "porcentaje de memoria al "+aux, "alert", JOptionPane.INFORMATION_MESSAGE);
+        //guardar el usuario  y el query
         }
          
        
-        }
-      
-        
-      // c.executeQuery("SELECT * FROM   v$sga_dynamic_free_memory");
-//        c.executeQuery2("SELECT BYTES AS d FROM V$SGAINFO WHERE NAME = 'Fixed SGA Size'"); 
-    
-
-        
+        }        
     }
     
 }

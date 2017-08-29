@@ -97,13 +97,10 @@ public class Conexion {
              getColumnNames(rs);
             while (rs.next()) {
               
-    
-                
-                
                String a = rs.getString("POOL");//Aqui deberia jalar el nombre de la columna
-                String b = rs.getString("FREE_MEMORY_IN_MB");
+                String b = rs.getString("FREE_MEMORY_IN_MB");// valor columnas 
                
-              valor+= Double.parseDouble(b);
+              valor+= Double.parseDouble(b); // parsear valor 
                 System.out.println(a+" "+" "+b);          
                
             }
@@ -111,8 +108,8 @@ public class Conexion {
             System.out.println(ex.getMessage());
         }
         
-        valor=176- valor;
-        valor=(valor/176)*100;
+        valor=176- valor;// diferencia a la memoria libre 
+        valor=(valor/176)*100;// porcentaje de memoria usada 
             System.out.println("%"+valor);
             
         return valor;  

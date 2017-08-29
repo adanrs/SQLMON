@@ -1,11 +1,4 @@
--- -----------------------------------------------------------------------------------
--- File Name    : https://oracle-base.com/dba/monitoring/monitor_memory.sql
--- Author       : Tim Hall
--- Description  : Displays memory allocations for the current database sessions.
--- Requirements : Access to the V$ views.
--- Call Syntax  : @monitor_memory
--- Last Modified: 15-JUL-2000
--- -----------------------------------------------------------------------------------
+
 SET LINESIZE 200
 
 COLUMN username FORMAT A20

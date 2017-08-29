@@ -1,11 +1,4 @@
--- -----------------------------------------------------------------------------------
--- File Name    : https://oracle-base.com/dba/monitoring/monitor.sql
--- Author       : Tim Hall
--- Description  : Displays SQL statements for the current database sessions.
--- Requirements : Access to the V$ views.
--- Call Syntax  : @monitor
--- Last Modified: 15/07/2000
--- -----------------------------------------------------------------------------------
+
 SET VERIFY OFF
 SET LINESIZE 255
 COL SID FORMAT 999

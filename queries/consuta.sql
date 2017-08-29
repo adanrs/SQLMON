@@ -1,4 +1,4 @@
--- script by Denis L.
+
 col snap_time       format a20 heading "Snap Time"
 col instance_number format 990 heading "SID"
 col snap_id heading "Snap ID"
