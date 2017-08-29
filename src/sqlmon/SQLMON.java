@@ -6,6 +6,7 @@
 package sqlmon;
 
 import Ventanas.SwingWorkerRealTime;
+import Ventanas.Vent2;
 import javax.swing.JOptionPane;
 import sqlmon.conexion.Conexion;
 import paneles.PanelMonitor;
@@ -18,12 +19,13 @@ public class SQLMON {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         // TODO code application logic here
        
         double aux=0;
         //si quiere ver un consumo hagalo con true...
         SwingWorkerRealTime vent= new SwingWorkerRealTime();
+        Vent2 vent2= new Vent2();
         vent.init();
         
         while(true)
@@ -37,14 +39,14 @@ public class SQLMON {
         //estos valores son los que hay que pasar de 0 a 100% y de ahi pasarlos al grafico.
         System.out.println("----------------------------------------");
         vent.go(aux);
+        vent2.go(aux);
         if(aux > 85){
         JOptionPane.showMessageDialog(null, "porcentaje de memoria al "+aux, "alert", JOptionPane.INFORMATION_MESSAGE);
         }
          
        
         }
-    
-        
+      
         
       // c.executeQuery("SELECT * FROM   v$sga_dynamic_free_memory");
 //        c.executeQuery2("SELECT BYTES AS d FROM V$SGAINFO WHERE NAME = 'Fixed SGA Size'"); 
