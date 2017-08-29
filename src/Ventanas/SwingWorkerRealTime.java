@@ -37,6 +37,7 @@ public class SwingWorkerRealTime {
     chart.getStyler().setXAxisTicksVisible(false);
     sw = new SwingWrapper<XYChart>(chart);
     sw.displayChart();
+    
   }
   
  //uno
@@ -69,13 +70,17 @@ public class SwingWorkerRealTime {
       
         fifo.add(fifo.get(fifo.size()- 1) + valor);// valor de la memoria libre
 
-        if (fifo.size() > 500) {
+        if (fifo.size() > 10) {
           fifo.removeFirst();
         }
  
         double[] array = new double[fifo.size()];
         for (int i = 0; i < fifo.size(); i++) {
-          array[i] = fifo.get(i);
+            //revisar aqui xq el valor anterior es 0?
+            System.out.println("---#1--");
+            array[i] = fifo.get(i);
+            System.out.println(array[i] = fifo.get(i));
+            System.out.println("---#1--");
         }
         publish(array);
  
@@ -83,7 +88,7 @@ public class SwingWorkerRealTime {
           Thread.sleep(100);
         } catch (InterruptedException e) {
           // eat it. caught when interrupt is called
-          System.out.println("MySwingWorker shut down.");
+          System.out.println("Detener");
         }
        
            
