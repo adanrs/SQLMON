@@ -93,7 +93,7 @@ public class Conexion {
         try {
             Statement stm = conexion.createStatement();
             ResultSet rs = stm.executeQuery(statement);
-            System.out.println("Ejecutando");
+           // System.out.println("Ejecutando");
              getColumnNames(rs);
             while (rs.next()) {
               

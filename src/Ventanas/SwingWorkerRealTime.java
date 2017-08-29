@@ -33,7 +33,7 @@ public class SwingWorkerRealTime {
   public void init()
   {
        // Create Chart
-    chart = QuickChart.getChart("Monitor Data Base", "time", "Memory", "uso", new double[] { 0 }, new double[] { 0 });
+    chart = QuickChart.getChart("Monitor Data Base", "time", "Memory", "Uso", new double[] { 0 }, new double[] { 0 });
     chart.getStyler().setXAxisTicksVisible(false);
     sw = new SwingWrapper<XYChart>(chart);
     sw.displayChart();
@@ -98,7 +98,7 @@ public class SwingWorkerRealTime {
  
       double[] mostRecentDataSet = chunks.get(chunks.size() - 1);
  
-      chart.updateXYSeries("uso", null, mostRecentDataSet, null);
+      chart.updateXYSeries("Uso", null, mostRecentDataSet, null);
       sw.repaintChart();
  
       long start = System.currentTimeMillis();

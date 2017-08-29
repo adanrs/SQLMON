@@ -19,7 +19,7 @@ public class SQLMON {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args)  {
+    public static void main(String[] args) throws InterruptedException  {
         // TODO code application logic here
        
         double aux=0;
@@ -27,12 +27,12 @@ public class SQLMON {
         SwingWorkerRealTime vent= new SwingWorkerRealTime(); // constructructor ventana 
         
         vent.init();// inicio ventana 
-        
-        while(true) // mantiene corriendo el programa 
-        {
-            
         Conexion c = new Conexion(); // crea la conexion con la base de datos 
         c.conectar();// conecta a la base 
+        while(true) // mantiene corriendo el programa 
+        {
+        Thread.sleep(1000);  
+        
         //aqui hay que modificar el query ya que ocupamos informacion adicional revise el queri de monitor_memory es el que deberia ir aqui.
        aux= c.executeQuery("select POOL, Round(bytes/1024/1024,0) Free_Memory_In_MB From V$sgastat Where Name Like '%free memory%'");
         //estos valores son los que hay que pasar de 0 a 100% y de ahi pasarlos al grafico.
