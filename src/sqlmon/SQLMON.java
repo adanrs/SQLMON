@@ -25,7 +25,7 @@ public class SQLMON {
         SwingWorkerRealTime vent= new SwingWorkerRealTime();
         vent.init();
         
-        while(i<10)
+        while(true)
         {
             
         //System.out.println("----------------"+i+"-------------------");

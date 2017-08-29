@@ -111,8 +111,11 @@ public class Conexion {
             System.out.println(ex.getMessage());
         }
         
-            System.out.println("%"+(valor/176)*100);
-        return (valor/176)*100;  
+        valor=176- valor;
+        valor=(valor/176)*100;
+            System.out.println("%"+valor);
+            
+        return valor;  
     }
         
         /*Devuelve columna*/
