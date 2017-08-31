@@ -5,6 +5,10 @@
  */
 package Ventanas;
 
+import java.sql.Date;
+import java.text.DecimalFormat;
+
+
 import javax.swing.JOptionPane;
 import org.knowm.xchart.QuickChart;
 import org.knowm.xchart.SwingWrapper;
@@ -16,58 +20,62 @@ import org.knowm.xchart.XYChart;
  */
 public class Graf2 {
     double phase = 0;
-    double[][] initdata= new double[400][400];
+    double[][] initdata= new double[10][10];
     final XYChart chart;
     final SwingWrapper<XYChart> sw;
     double cont;
+     DecimalFormat format;
     public  Graf2()
     {
-      chart = QuickChart.getChart("Monitor memoria Bases de Datos", "iteracion", "porcentaje de memoria", "uso", initdata[0], initdata[1]);
+      chart = QuickChart.getChart("Monitor memoria Bases de Datos", "segundos", "porcentaje de memoria", "uso", initdata[0], initdata[1]);
  
     // Show it
      sw= new SwingWrapper<XYChart>(chart);
    
     sw.displayChart("monitor");
     cont=0;
- 
+  format = new DecimalFormat("00.0");
     }
     
     public boolean go(float[] vec) throws InterruptedException
     {
-        int i=0;
-         while (i<vec.length) {
- 
-      //Thread.sleep(100);
+        
+            
  
       final double[][] data = getSineData(vec);
  
       chart.updateXYSeries("uso", data[0], data[1], null);
       sw.repaintChart();
-      if(vec[i] > 85)
-        {
-        JOptionPane.showMessageDialog(null, "porcentaje de memoria al "+vec[i], "alert", JOptionPane.INFORMATION_MESSAGE);
-        //guardar el usuario  y el query
-              if(vec[i]==100)
-      {
-          return true;
-      }
-        }
+    
 
-      i++;
+     
       
-    }
+      
+    
          return false;
     }
     
-    private  double[][] getSineData(float[] phase) {
+    private  double[][] getSineData(float[] phase) throws InterruptedException {
  
-    double[] xData = new double[400];
-    double[] yData = new double[400];
+        
+    double[] xData = new double[15];
+    double[] yData = new double[15];
     for (int i = 0; i < xData.length; i++) {
-      
+            
+           
+           
       xData[i] = cont;
-      yData[i] = phase[i];
+      yData[i] =Double.valueOf(format.format(phase[i]).replaceAll(",", "."));
       cont++;
+        if(phase[i]>85)
+        {
+            JOptionPane.showMessageDialog(null, "porcentaje de memoria al"+phase[i], "alert", JOptionPane.WARNING_MESSAGE);
+       if(phase[i]==100)
+       {
+            JOptionPane.showMessageDialog(null, "porcentaje de memoria al 100% por favor cierre la ventana de grafico", "alert", JOptionPane.WARNING_MESSAGE);
+       }
+        }
+      
     }
     return new double[][] { xData, yData };
   }

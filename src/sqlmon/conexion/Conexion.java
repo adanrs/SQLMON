@@ -90,11 +90,11 @@ public class Conexion {
     //aqui va el cod del grafico 
         public float [] executeQuery(String statement) throws InterruptedException {
             int i=0;
-            float [] vec = new float[400];
-            while(i<400)
+            float [] vec = new float[15];
+            while(i<15)
             {
                  float valor=0;
-                 Thread.sleep(100);
+                 
         try {
             Statement stm = conexion.createStatement();
             ResultSet rs = stm.executeQuery(statement);
@@ -119,7 +119,7 @@ public class Conexion {
             System.out.println("%"+valor);
             vec[i]=valor;
             i++;
-          
+          Thread.sleep(995);
         }
         return vec;  
     }
