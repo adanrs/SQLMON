@@ -5,6 +5,7 @@
  */
 package sqlmon;
 
+import Ventanas.Graf2;
 import Ventanas.SwingWorkerRealTime;
 
 import javax.swing.JOptionPane;
@@ -22,16 +23,16 @@ public class SQLMON {
     public static void main(String[] args) throws InterruptedException  {
         // TODO code application logic here
        
-        double aux=0;
+        float[] aux=new float[400];
         //si quiere ver un consumo hagalo con true...
-        SwingWorkerRealTime vent= new SwingWorkerRealTime(); // constructructor ventana 
+       Graf2 vent= new Graf2(); // constructructor ventana 
         
-        vent.init();// inicio ventana 
+       // vent.init();// inicio ventana 
         Conexion c = new Conexion(); // crea la conexion con la base de datos 
         c.conectar();// conecta a la base 
         while(true) // mantiene corriendo el programa 
         {
-        Thread.sleep(1000);  
+        Thread.sleep(100);  
         
         //aqui hay que modificar el query ya que ocupamos informacion adicional revise el queri de monitor_memory es el que deberia ir aqui.
        aux= c.executeQuery("select POOL, Round(bytes/1024/1024,0) Free_Memory_In_MB From V$sgastat Where Name Like '%free memory%'");
@@ -39,10 +40,7 @@ public class SQLMON {
         System.out.println("----------------------------------------");
         vent.go(aux);// se le envia porcentaje a la ventana 
         
-        if(aux > 85){
-        JOptionPane.showMessageDialog(null, "porcentaje de memoria al "+aux, "alert", JOptionPane.INFORMATION_MESSAGE);
-        //guardar el usuario  y el query
-        }
+       
          
        
         }        

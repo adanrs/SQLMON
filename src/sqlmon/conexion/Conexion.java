@@ -88,8 +88,12 @@ public class Conexion {
     }
     /*Ejecutar Querys*/
     //aqui va el cod del grafico 
-        public double executeQuery(String statement) { 
-            double valor=0;
+        public float [] executeQuery(String statement) {
+            int i=0;
+            float [] vec = new float[400];
+            while(i<400)
+            {
+                 float valor=0;
         try {
             Statement stm = conexion.createStatement();
             ResultSet rs = stm.executeQuery(statement);
@@ -100,7 +104,7 @@ public class Conexion {
                String a = rs.getString("POOL");//Aqui deberia jalar el nombre de la columna
                 String b = rs.getString("FREE_MEMORY_IN_MB");// valor columnas 
                
-              valor+= Double.parseDouble(b); // parsear valor 
+              valor+= Float.parseFloat(b); // parsear valor 
                 System.out.println(a+" "+" "+b);          
                
             }
@@ -111,8 +115,11 @@ public class Conexion {
         valor=176- valor;// diferencia a la memoria libre 
         valor=(valor/176)*100;// porcentaje de memoria usada 
             System.out.println("%"+valor);
-            
-        return valor;  
+            vec[i]=valor;
+            i++;
+          
+        }
+        return vec;  
     }
         
         /*Devuelve columna*/
