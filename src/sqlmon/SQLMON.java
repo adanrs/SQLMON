@@ -8,6 +8,7 @@ package sqlmon;
 import Ventanas.Graf2;
 
 
+
 import javax.swing.JOptionPane;
 import sqlmon.conexion.Conexion;
 import paneles.PanelMonitor;
@@ -24,6 +25,7 @@ public class SQLMON {
         // TODO code application logic here
        
         float[] aux=new float[400];
+        boolean bandera;
         //si quiere ver un consumo hagalo con true...
        Graf2 vent= new Graf2(); // constructructor ventana 
         
@@ -38,9 +40,15 @@ public class SQLMON {
        aux= c.executeQuery("select POOL, Round(bytes/1024/1024,0) Free_Memory_In_MB From V$sgastat Where Name Like '%free memory%'");
         //estos valores son los que hay que pasar de 0 a 100% y de ahi pasarlos al grafico.
         System.out.println("----------------------------------------");
-        vent.go(aux);// se le envia porcentaje a la ventana 
+        bandera=vent.go(aux);// se le envia porcentaje a la ventana 
         
-       
+       if(bandera)
+       {
+           vent=null;
+           System.gc();
+           return;
+           
+       }
          
        
         }        

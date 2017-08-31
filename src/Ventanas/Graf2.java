@@ -26,12 +26,13 @@ public class Graf2 {
  
     // Show it
      sw= new SwingWrapper<XYChart>(chart);
-    sw.displayChart();
+   
+    sw.displayChart("monitor");
     cont=0;
  
     }
     
-    public void go(float[] vec) throws InterruptedException
+    public boolean go(float[] vec) throws InterruptedException
     {
         int i=0;
          while (i<vec.length) {
@@ -47,9 +48,14 @@ public class Graf2 {
         JOptionPane.showMessageDialog(null, "porcentaje de memoria al "+vec[i], "alert", JOptionPane.INFORMATION_MESSAGE);
         //guardar el usuario  y el query
         }
+      if(vec[i]==100)
+      {
+          return true;
+      }
       i++;
       
     }
+         return false;
     }
     
     private  double[][] getSineData(float[] phase) {
@@ -64,5 +70,7 @@ public class Graf2 {
     }
     return new double[][] { xData, yData };
   }
+    
+
 }
 
