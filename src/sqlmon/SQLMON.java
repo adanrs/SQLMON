@@ -6,7 +6,7 @@
 package sqlmon;
 
 import Ventanas.Graf2;
-import Ventanas.SwingWorkerRealTime;
+
 
 import javax.swing.JOptionPane;
 import sqlmon.conexion.Conexion;

@@ -7,7 +7,7 @@ package sqlmon.conexion;
 
 
 
-import Ventanas.SwingWorkerRealTime;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Connection;

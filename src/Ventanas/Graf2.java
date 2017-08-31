@@ -22,7 +22,7 @@ public class Graf2 {
     double cont;
     public  Graf2()
     {
-      chart = QuickChart.getChart("Monitor", "iteracion", "Memoria", "uso", initdata[0], initdata[1]);
+      chart = QuickChart.getChart("Monitor memoria Bases de Datos", "iteracion", "porcentaje de memoria", "uso", initdata[0], initdata[1]);
  
     // Show it
      sw= new SwingWrapper<XYChart>(chart);
@@ -42,11 +42,11 @@ public class Graf2 {
  
       chart.updateXYSeries("uso", data[0], data[1], null);
       sw.repaintChart();
-      /* if(vec[i] > 85)
+      if(vec[i] > 85)
         {
         JOptionPane.showMessageDialog(null, "porcentaje de memoria al "+vec[i], "alert", JOptionPane.INFORMATION_MESSAGE);
         //guardar el usuario  y el query
-        }*/
+        }
       i++;
       
     }
