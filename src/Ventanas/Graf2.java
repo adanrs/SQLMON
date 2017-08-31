@@ -47,11 +47,12 @@ public class Graf2 {
         {
         JOptionPane.showMessageDialog(null, "porcentaje de memoria al "+vec[i], "alert", JOptionPane.INFORMATION_MESSAGE);
         //guardar el usuario  y el query
-        }
-      if(vec[i]==100)
+              if(vec[i]==100)
       {
           return true;
       }
+        }
+
       i++;
       
     }

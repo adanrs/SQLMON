@@ -41,7 +41,7 @@ public class SQLMON {
         //estos valores son los que hay que pasar de 0 a 100% y de ahi pasarlos al grafico.
         System.out.println("----------------------------------------");
         bandera=vent.go(aux);// se le envia porcentaje a la ventana 
-        
+        aux=null;
        if(bandera)
        {
            vent=null;

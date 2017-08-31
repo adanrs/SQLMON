@@ -88,12 +88,13 @@ public class Conexion {
     }
     /*Ejecutar Querys*/
     //aqui va el cod del grafico 
-        public float [] executeQuery(String statement) {
+        public float [] executeQuery(String statement) throws InterruptedException {
             int i=0;
             float [] vec = new float[400];
             while(i<400)
             {
                  float valor=0;
+                 Thread.sleep(100);
         try {
             Statement stm = conexion.createStatement();
             ResultSet rs = stm.executeQuery(statement);
@@ -105,7 +106,8 @@ public class Conexion {
                 String b = rs.getString("FREE_MEMORY_IN_MB");// valor columnas 
                
               valor+= Float.parseFloat(b); // parsear valor 
-                System.out.println(a+" "+" "+b);          
+                System.out.println(a+" "+" "+b);   
+                
                
             }
         } catch (SQLException ex) {
