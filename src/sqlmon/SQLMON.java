@@ -11,7 +11,7 @@ import Ventanas.Graf2;
 
 import javax.swing.JOptionPane;
 import sqlmon.conexion.Conexion;
-import paneles.PanelMonitor;
+
 /**
  *
  * @author adan-

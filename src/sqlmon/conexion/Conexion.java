@@ -21,7 +21,7 @@ import java.sql.Statement;
  */
 public class Conexion {
     private Connection conexion;
-    static String url = "jdbc:oracle:thin:@localhost:1521:XE"; //Descargar ojdbc6.jar e incluirlo en la libreria
+    static String url = "jdbc:oracle:thin:@localhost:1521/XE"; //Descargar ojdbc6.jar e incluirlo en la libreria
     static String user = "system";
     static String password = "root";
     private boolean exito;
